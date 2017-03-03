@@ -14,8 +14,6 @@ require("dotenv").config({
 
 var path = require("path");
 
-//var bodyParser = require("body-parser");
-
 //use native mongoDB driver
 var mongodb = require("mongodb");
 
@@ -62,7 +60,7 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
             "error": message
         });
         
-    };
+    }
 
     app.get('/scrape', function(req,res){
     //Web Scraping API
@@ -82,31 +80,66 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
             if(!error){
                 
                 //use cheerio library on returned html, gives jQuery like functionality
+                //load the html in a $ variable
                 var $ = cheerio.load(html);   
                 
-                console.log($);
+                //Array to hold all the bank rate objects 
+                var json = [];
                 
-                var json = { bank: " ", buy: "", sell: "" };
+                /*Table is structured like this:
+                <tbody>
+                    <tr>
+                        <td>Bank Name</td>
+                        <td>Buy</td>
+                        <td>Sell</td>
+                    </tr>
+                    <tr>
+                        <td class="bank_name><span>HSBC</span></td>
+                        <td class="rc_a"><a>0.89000</a></td>
+                        <td class="rc_a"><a>0.90000</a></td>
+                    </tr>
+                <tbody>
                 
-                //get the bank name
-               $('.bank_name').filter(function(){
+                */
+                
+                //the first column of the rates table have the bank names with class .bank_name
+                //We use that as our starting point for traversing 
+                //.bank_name is a <td> element within <tr>
+                $(".bank_name").each(function(i,elem){
                     
-                    //store data in we filter in a variable
-                    var data = $(this); 
+                    //in Cheerio JS: every element in the loop is available as $(this)
                     
-                    console.log(data);
+                    //An empty object for each bank
+                    var bank = {};
                     
-                    var bank_name = data.children().first();
+                    //the bankname is in a span element within <td> with class .bank_name
+                    var bank_name = $(this).children().text();
                     
-                    console.log(bank_name);
+                    //we get the second <td> element which is the buy rate
+                    var tt_buy = $(this).next().children().text();
                     
-                    //json.bank = bank_name;
+                    //we get the third <td> element which is the sell rate
+                    var tt_sell = $(this).next().next().children().text();
                     
-                })
+                    bank.name = bank_name;
+                    
+                    bank.buy = tt_buy;
+                    
+                    bank.sell = tt_sell;
+                    
+                    json.push(bank);
+                    
+                    
+                });
+                
+                console.log(json);
+                
+                //Insert JSON in database
                 
                 
                 
-            }
+                
+            }//if(!error)
             
             
         });
