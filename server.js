@@ -84,7 +84,21 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
                 var $ = cheerio.load(html);   
                 
                 //Array to hold all the bank rate objects 
-                var json = [];
+                var json = {
+                    
+                    date: "",
+                    
+                    data: [ ]
+                    
+                    
+                };
+                
+                //create a date and put it in the JSON object
+                
+                var d = new Date();
+                
+                //save as JS Date object. Modify for use in front-end after retrieving from database
+                json.date = d;
                 
                 /*Table is structured like this:
                 <tbody>
@@ -127,29 +141,41 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
                     
                     bank.sell = tt_sell;
                     
-                    json.push(bank);
+                    json.data.push(bank);
                     
                     
-                });
+                });//$(".bank_name").each
                 
-                console.log(json);
                 
                 //Insert JSON in database
+                db.collection(RATES_COLLECTION).insertOne(json,function(err,doc){
+                //insert new rates object, result contains the document from MongoDB
+                //ops contains the document(s) inserted with added _id fields
                 
-                
-                
+                    if(err){
+                        
+                        handleError(res,err.message, "Failed to create new rates object");
+                        
+                    } else {
+                        
+                        res.status(201).json(doc.ops[0]);
+                        //201 Created status code and send the inserted document to browser in JSON format
+                        
+                    }
+                     
+                    
+                });
                 
             }//if(!error)
             
             
         });
         
-        res.send(200).end();
+        //res.send(200).end();
         
     });//app.get
 
 });//mongodb.MongoClient
-
 
 exports = module.exports = app;
 
