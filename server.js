@@ -1,3 +1,5 @@
+/*global axios*/
+
 var express = require("express");
 var fs = require("fs");
 //Request is designed to be the simplest way possible to make http calls
@@ -5,6 +7,10 @@ var fs = require("fs");
 var request = require("request");
 //Cheerio is jQuery for the server
 var cheerio = require("cheerio");
+//A simple cron-like task scheduler for Node.js
+var cron = require("node-cron");
+//use Axios for HTTP requests
+var axios = require("axios");
 
 require("dotenv").config({
     
@@ -48,7 +54,28 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
    
         console.log("App is now running on port ", port);
         
-    });
+        //Cronjob after succesfully connecting to server and database
+        //Set it to run once every day
+        /*cron.schedule('* * * * *', function(){
+    
+        console.log("running a task every minute");
+        
+        axios.get('https://tt-rates-chemok78.c9users.io/scrape')
+             .then(function(response){
+                 
+                 console.log(response.data);
+                 
+             })
+             .catch(function(error){
+                 
+                 
+                 console.log("error");
+                 
+             });
+        
+        });//cron scheduler*/
+        
+    });//server
     
     /*API Services*/
 
@@ -89,7 +116,6 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
                     date: "",
                     
                     data: [ ]
-                    
                     
                 };
                 
@@ -198,6 +224,7 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
         
         
     });
+    
 
 });//mongodb.MongoClient
 
