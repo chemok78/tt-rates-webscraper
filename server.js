@@ -174,6 +174,30 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
         //res.send(200).end();
         
     });//app.get
+    
+    //API to get all rate objects in DB
+    app.get("/rates", function(req,res){
+       
+       db.collection(RATES_COLLECTION).find({}).toArray(function(err,docs){
+       //get the Rates collection as a cursor
+       //use find with empty object to load all documents
+       //convert cursor to Array
+           
+            if(err){
+                
+                handleError(res,err.message, "Failed to get rates");
+                
+            } else {
+                
+                res.status(200).json(docs);
+                //Status code 200 ok and send results as JSON object to client
+                
+            }
+           
+       });
+        
+        
+    });
 
 });//mongodb.MongoClient
 
