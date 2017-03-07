@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
-    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,10 +17,12 @@
   <body>
 
     <div class="container">
-      <h1 class="text-center">Jay's Boiler Plate</h1>
-      <h4 class="text-center">Made with Node JS and Express JS</h4>
-      <p class="text-center">And BootStrap, BootStrap jQuery, Cheerio, Request</p>
+      <h1 class="text-center">CNY vs HKD TT Rates</h1>
+      <h4 class="text-center">Made with MEAN stack on D3. And BootStrap, BootStrap jQuery, Cheerio, Axios</h4>
+      <p class="text-center">Node Server with cronjob scrapes (using Axios and Cheerio) http://hk.ttrate.com/en_us/index.php?b=0&c=CNY&s=3&t=3 daily for the latest TT rates. Saves data in MongoDB and exposes an API at /rates for the front-end to get JSON data and builds a chart using D3.</p>
       <br>
+      <div id="chart" class="text-center">
+      </div>
     </div>
 
     <footer>
