@@ -1,6 +1,6 @@
 Build with MEAN Stack and D3
 
-Live app at: https://nodejswebscraperttrates.herokuapp.com/ 
+Live app at: https://rateswebscraper.herokuapp.com 
 
 Server Side:
 

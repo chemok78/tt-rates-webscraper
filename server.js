@@ -58,7 +58,7 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
         //Set it to run once every day
         cron.schedule('0 0 0 * * *', function(){
         
-        axios.get('https://nodejswebscraperttrates.herokuapp.com/scrape')
+        axios.get('https://rateswebscraper.herokuapp.com/scrape')
              .then(function(response){
                  
                  console.log(response.data);
@@ -230,7 +230,7 @@ var http = require("http");
 
 setInterval(function() {
     
-    http.get("https://nodejswebscraperttrates.herokuapp.com");
+    http.get("https://rateswebscraper.herokuapp.com");
 
 }, 300000); //ping my website every 5 minutes so it never goes to sleep
 
