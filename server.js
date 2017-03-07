@@ -12,14 +12,6 @@ var cron = require("node-cron");
 //use Axios for HTTP requests
 var axios = require("axios");
 
-function requireHTTPS(req, res, next) {
-  // The 'x-forwarded-proto' check is for Heroku
-  if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
-    return res.redirect('https://' + req.get('host') + req.url);
-  }
-  next();
-}
-
 require("dotenv").config({
     
     silent: true 
@@ -42,8 +34,6 @@ var app = express();
 app.use(express.static(__dirname + "/public"));
 
 //app.use(bodyParser.json);
-
-app.use(requireHTTPS);
 
 mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
     
