@@ -14,7 +14,7 @@ var margin = {
 var w = 1000 - margin.left - margin.right,
     h = 500 - margin.top - margin.bottom;
     
-var ratesData = "http://rateswebscraper.herokuapp.com/rates";
+var ratesData = "https://rateswebscraper.herokuapp.com/rates";
 
 //load buy or sell data    
 var loadData = function(dataSet, title){
