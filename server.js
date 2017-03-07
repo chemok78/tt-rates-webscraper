@@ -228,11 +228,5 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
 
 var http = require("http");
 
-setInterval(function() {
-    
-    http.get("https://rateswebscraper.herokuapp.com");
 
-}, 300000); //ping my website every 5 minutes so it never goes to sleep
-
-exports = module.exports = app;
 
