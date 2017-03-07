@@ -56,9 +56,7 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
         
         //Cronjob after succesfully connecting to server and database
         //Set it to run once every day
-        /*cron.schedule('* * * * *', function(){
-    
-        console.log("running a task every minute");
+        cron.schedule('0 0 0 * * *', function(){
         
         axios.get('https://tt-rates-chemok78.c9users.io/scrape')
              .then(function(response){
@@ -73,7 +71,7 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
                  
              });
         
-        });//cron scheduler*/
+        });//cron scheduler
         
     });//server
     
