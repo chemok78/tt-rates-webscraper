@@ -19,8 +19,13 @@
     <div class="container">
       <h1 class="text-center">CNY vs HKD TT Rates</h1>
       <h4 class="text-center">Made with MEAN stack on D3. And BootStrap, BootStrap jQuery, Cheerio, Axios</h4>
-      <p class="text-center">Node Server with cronjob scrapes (using Axios and Cheerio) http://hk.ttrate.com/en_us/index.php?b=0&c=CNY&s=3&t=3 daily for the latest TT rates. Saves data in MongoDB and exposes an API at /rates for the front-end to get JSON data and builds a chart using D3.</p>
+      <p class="text-center">Node Server with cronjob scrapes (using Axios and Cheerio) <a href="http://hk.ttrate.com/en_us/index.php?b=0&c=CNY&s=3&t=3" target="_blank">http://hk.ttrate.com</a> daily for the latest TT rates. Saves data in MongoDB and exposes an API at /rates for the front-end to get JSON data and builds a chart using D3.</p>
       <br>
+      <div class="text-center">
+        <h4 id="title">Buy Rates</h2>
+        <button type="button" class="btn btn-primary" id="buyData">See Buy Rates</button>
+        <button type="button" class="btn btn-primary" id="sellData">See Sell Rates</button>
+      </div>
       <div id="chart" class="text-center">
       </div>
     </div>
