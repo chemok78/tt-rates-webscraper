@@ -13,9 +13,8 @@ var margin = {
 //width and height of chart, within SVG element
 var w = 1000 - margin.left - margin.right,
     h = 500 - margin.top - margin.bottom;
-
     
-var ratesData = "https://tt-rates-chemok78.c9users.io/rates";
+var ratesData = "https://nodejswebscraperttrates.herokuapp.com/rates";
 
 //load buy or sell data    
 var loadData = function(dataSet, title){

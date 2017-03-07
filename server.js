@@ -58,7 +58,7 @@ mongodb.MongoClient.connect(process.env.DB_URL, function(err, database){
         //Set it to run once every day
         cron.schedule('0 0 0 * * *', function(){
         
-        axios.get('https://tt-rates-chemok78.c9users.io/scrape')
+        axios.get('https://nodejswebscraperttrates.herokuapp.com/scrape')
              .then(function(response){
                  
                  console.log(response.data);
