@@ -1,5 +1,7 @@
 Build with MEAN Stack and D3
 
+Live app at: https://nodejswebscraperttrates.herokuapp.com/ 
+
 Server Side:
 
 Node and Express Server
@@ -13,5 +15,5 @@ Cronjob on server to scrape every day and enter document in database
 
 Front-end
 
-Using D3 JSON method to access /rates route and pull in the database
+Using D3 JSON method to access /rates route and pull in the data
 

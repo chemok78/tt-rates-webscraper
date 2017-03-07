@@ -6,13 +6,13 @@ var margin = {
     top: 20,
     right: 50,
     bottom: 20,
-    left: 30
+    left: 50
     
 };
 
 //width and height of chart, within SVG element
 var w = 1000 - margin.left - margin.right,
-    h = 900 - margin.top - margin.bottom;
+    h = 500 - margin.top - margin.bottom;
 
 //create SVG element and append to #chart div container
 var svg = d3.select("#chart")
@@ -134,7 +134,7 @@ d3.json(ratesData, function(data){
    //Get the Min/Max values for date and rates and setup color scale based on bank ID
    x.domain(d3.extent(rates, function(d) { return d.date; }));
     y.domain([
-    d3.min(banks, function(c) { return d3.min(c.values, function(d) { return d.rate; }); }),
+    d3.min(banks, function(c) { return d3.min(c.values, function(d) { if(d.rate !== 0) {return d.rate;} else {return} }); }),
     d3.max(banks, function(c) { return d3.max(c.values, function(d) { return d.rate; }); })
   ]);
    //color scale needs an array of bank id's
@@ -153,7 +153,7 @@ d3.json(ratesData, function(data){
       .attr("y", 6)
       .attr("dy", "0.71em")
       .attr("fill", "#000")
-      .text("Rates");
+      .text("Rates in HKD");
       
     //for every bank element we append a g group element 
     var bank = svg.selectAll(".bank")
