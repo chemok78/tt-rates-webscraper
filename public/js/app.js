@@ -73,7 +73,7 @@ var loadData = function(dataSet, title){
             
        ]
        */
-       var banks = rates[0].data.map(function(item){
+       var banks = data[0].data.map(function(item){
        //get the first object(day) in the array
        //loop through the .data array and get the bank names for the series
        
@@ -90,7 +90,7 @@ var loadData = function(dataSet, title){
        
        var createRates = function(type){
        
-           rates.forEach(function(item){
+           data.forEach(function(item){
            //loop through every day of the rates array
               
               item.data.forEach(function(rate){
@@ -145,7 +145,7 @@ var loadData = function(dataSet, title){
        //var banks = array of objects per bank (and nested value array of values per day)
        
        //Get the Min/Max values for date and rates and setup color scale based on bank ID
-       x.domain(d3.extent(rates, function(d) { return d.date; }));
+       x.domain(d3.extent(data, function(d) { return d.date; }));
         y.domain([
         d3.min(banks, function(c) { return d3.min(c.values, function(d) { if(d.rate !== 0) {return d.rate;} else {return} }); }),
         d3.max(banks, function(c) { return d3.max(c.values, function(d) { return d.rate; }); })
