@@ -48,13 +48,13 @@ var loadData = function(dataSet, title){
     d3.json(ratesData, function(data){
         
        //convert date strings bank to date objects for d3.scaleTime    
-       var rates = data.map(function(item){
+       /*var rates = data.map(function(item){
            
            item.date = new Date(item.date);
            
            return item;
            
-       });
+       });*/
        
        //rates is one array per day
        //[{date: object, data:[{"name": ICBC, "buy": "009309", sell:"090318"}, {"name": ICBC, "buy": "009309", sell:"090318"}] ]
