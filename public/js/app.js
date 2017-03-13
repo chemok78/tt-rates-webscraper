@@ -53,12 +53,12 @@ var loadData = function(dataSet, title){
            
            item.date = new Date(item.date);
            
-           //remove U&A from dataset
+           //remove U&E from dataset
            //item.data is an array of objects with rates for each bank
            item.data.forEach(function(element, index){
            //every element is a bank object          
                   
-              if(element.name == "U&A"){
+              if(element.name == "U&E"){
                   
                   item.data.splice(index,1);
                   
