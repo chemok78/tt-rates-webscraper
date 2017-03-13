@@ -180,7 +180,8 @@ var loadData = function(dataSet, title){
     bank.append("path")
             .attr("class", "line")
             .attr("d", function(d) { return line(d.values);})
-            .style("stroke", function(d) { return z(d.id);});
+            .style("stroke", function(d) { return z(d.id);})
+            .style("fill", "none");
     
     //append a text next to the line for every bank    
      bank.append("text")
