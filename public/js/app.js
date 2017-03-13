@@ -49,12 +49,27 @@ var loadData = function(dataSet, title){
         
        //convert date strings bank to date objects for d3.scaleTime    
        var rates = data.map(function(item){
+       //every item is a date with bank rates in data
            
            item.date = new Date(item.date);
+           
+           //remove U&A from dataset
+           //item.data is an array of objects with rates for each bank
+           item.data.forEach(function(element, index){
+           //every element is a bank object          
+                  
+              if(element.name == "U&A"){
+                  
+                  item.data.splice(index,1);
+                  
+              }
+               
+           });
            
            return item;
            
        });
+       
        
        //rates is one array per day
        //[{date: object, data:[{"name": ICBC, "buy": "009309", sell:"090318"}, {"name": ICBC, "buy": "009309", sell:"090318"}] ]
