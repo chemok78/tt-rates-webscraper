@@ -12,7 +12,7 @@ var margin = {
 
 //width and height of chart, within SVG element
 var w = 1000 - margin.left - margin.right,
-    h = 800 - margin.top - margin.bottom;
+    h = 700 - margin.top - margin.bottom;
     
 var ratesData = "http://rateswebscraper.herokuapp.com/rates";
 
